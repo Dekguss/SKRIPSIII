@@ -44,21 +44,36 @@ export default function Home() {
 
       {/* Hero Section */}
       <div className="container mx-auto px-6 pt-8">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
-          <h1 className="text-4xl lg:text-6xl font-bold text-white mb-6">
-            Temukan Motor Bekas <br /> Impian Anda
-          </h1>
-          <Link href="/Rekomendasi">
-            <button className="px-8 py-3 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition transform hover:scale-105">
-              Mulai Mencari
-            </button>
-          </Link>
-        </motion.div>
+        <div className="flex flex-col md:flex-row items-center justify-between gap-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-left md:w-1/2"
+          >
+            <h1 className="text-4xl lg:text-6xl font-bold text-white mb-6">
+              Temukan Motor Bekas <br /> Impian Anda
+            </h1>
+            <Link href="/Rekomendasi">
+              <button className="px-8 py-3 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition transform hover:scale-105">
+                Mulai Mencari
+              </button>
+            </Link>
+          </motion.div>
+          
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="md:w-1/2"
+          >
+            <img
+              src="Hero.png"
+              alt="Motorcycle"
+              className="w-full h-auto"
+            />
+          </motion.div>
+        </div>
 
         {/* Featured Categories */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
@@ -158,7 +173,7 @@ export default function Home() {
         <div className="container mx-auto px-6">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="text-gray-400 mb-4 md:mb-0">
-              © 2024 MOTOREC. All rights reserved.
+              2024 MOTOREC. All rights reserved.
             </div>
             <div className="flex gap-6">
               <Link href="#" className="text-gray-400 hover:text-white transition">
