@@ -4,9 +4,9 @@ export default function Card({ brand, gambar, harga, model, tahun }) {
   const [imageError, setImageError] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
 
-  if (imageError) {
-    return null;
-  }
+  // if (imageError) {
+  //   return null;
+  // }
 
   return (
     <div
@@ -19,6 +19,7 @@ export default function Card({ brand, gambar, harga, model, tahun }) {
         <img
           src={gambar}
           alt={model}
+
           className={`w-full h-full object-cover transform transition-transform duration-300 ${
             isHovered ? 'scale-110' : 'scale-100'
           }`}
