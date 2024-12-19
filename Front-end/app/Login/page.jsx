@@ -53,10 +53,24 @@ export default function Login() {
   };
 
   return (
-    <div className="min-h-screen bg-base-200 flex items-center justify-center">
-      <div className="card w-full max-w-sm shadow-2xl bg-base-100">
+    <div className="min-h-screen bg-white flex items-center justify-center">
+      <style jsx>{`
+        input:-webkit-autofill,
+        input:-webkit-autofill:hover,
+        input:-webkit-autofill:focus,
+        input:-webkit-autofill:active {
+          -webkit-box-shadow: 0 0 0 30px white inset !important;
+          -webkit-text-fill-color: #2F7B5D !important;
+        }
+      `}</style>
+      <div className="card w-full max-w-sm shadow-2xl bg-white border-2 border-[#2F7B5D]">
         <form className="card-body" onSubmit={handleSubmit}>
-          <h2 className="text-2xl font-bold text-center mb-4">Login</h2>
+          <div className="flex justify-center mb-6">
+            <div className="px-8 py-2">
+              <h1 className="text-2xl font-bold text-[#2F7B5D]">MOTOREC</h1>
+            </div>
+          </div>
+          <h2 className="text-xl font-semibold text-left mb-2 text-[#2F7B5D]">Login Akun</h2>
           
           {error && (
             <div className="alert alert-error mb-4">
@@ -69,7 +83,7 @@ export default function Login() {
 
           <div className="form-control">
             <label className="label">
-              <span className="label-text">Username</span>
+              <span className="label-text text-[#2F7B5D]">Username</span>
             </label>
             <input
               type="text"
@@ -77,14 +91,14 @@ export default function Login() {
               value={formData.username}
               onChange={handleChange}
               placeholder="Masukkan username"
-              className="input input-bordered"
+              className="input input-bordered bg-white text-[#2F7B5D] border-[#2F7B5D] focus:bg-white focus:border-[#2F7B5D] focus:outline-none hover:border-[#2F7B5D]"
               required
             />
           </div>
 
           <div className="form-control">
             <label className="label">
-              <span className="label-text">Password</span>
+              <span className="label-text text-[#2F7B5D]">Password</span>
             </label>
             <input
               type="password"
@@ -92,20 +106,21 @@ export default function Login() {
               value={formData.password}
               onChange={handleChange}
               placeholder="Masukkan password"
-              className="input input-bordered"
+              className="input input-bordered bg-white text-[#2F7B5D] border-[#2F7B5D] focus:bg-white focus:border-[#2F7B5D] focus:outline-none hover:border-[#2F7B5D]"
               required
             />
             <label className="label">
-              <Link href="/forgot-password" className="label-text-alt link link-hover">
+              <Link href="/forgot-password" className="label-text-alt link link-hover text-[#2F7B5D]">
                 Lupa password?
               </Link>
             </label>
           </div>
 
-          <div className="form-control mt-6">
+          <div className="mt-3">
+            <div className="border-t-2 border-[#2F7B5D] mb-6"></div>
             <button 
               type="submit" 
-              className={`btn btn-primary ${loading ? "loading" : ""}`}
+              className={`w-full btn text-white bg-[#2F7B5D] hover:bg-[#246347] border-none disabled:bg-[#2F7B5D] disabled:text-white ${loading ? "loading loading-bar loading-lg text-white before:bg-white" : ""}`}
               disabled={loading}
             >
               {loading ? "Loading..." : "Login"}
@@ -115,7 +130,7 @@ export default function Login() {
           <div className="text-center mt-4">
             <p>
               Belum punya akun?{" "}
-              <Link href="/Register" className="link link-primary">
+              <Link href="/Register" className="text-[#2F7B5D] hover:text-[#246347]">
                 Daftar sekarang
               </Link>
             </p>

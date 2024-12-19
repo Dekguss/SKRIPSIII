@@ -86,10 +86,15 @@ export default function Register() {
   };
 
   return (
-    <div className="min-h-screen bg-base-200 flex items-center justify-center py-8">
-      <div className="card w-full max-w-md shadow-2xl bg-base-100">
+    <div className="min-h-screen bg-white flex items-center justify-center py-8">
+      <div className="card w-full max-w-md shadow-2xl bg-white border-2 border-[#2F7B5D]">
         <form className="card-body" onSubmit={handleSubmit}>
-          <h2 className="text-2xl font-bold text-center mb-4">Daftar Akun Baru</h2>
+          <div className="flex justify-center mb-6">
+            <div className="px-8 py-2">
+              <h1 className="text-2xl font-bold text-[#2F7B5D]">MOTOREC</h1>
+            </div>
+          </div>
+          <h2 className="text-xl font-semibold text-left mb-2 text-[#2F7B5D]">Daftar Akun</h2>
 
           {error && (
             <div className="alert alert-error mb-4">
@@ -102,7 +107,7 @@ export default function Register() {
 
           <div className="form-control">
             <label className="label">
-              <span className="label-text">Username</span>
+              <span className="label-text text-[#2F7B5D]">Username</span>
             </label>
             <input
               type="text"
@@ -110,14 +115,14 @@ export default function Register() {
               value={formData.username}
               onChange={handleChange}
               placeholder="Masukkan username"
-              className="input input-bordered"
+              className="input input-bordered bg-white text-[#2F7B5D] border-[#2F7B5D] focus:bg-white focus:border-[#2F7B5D] focus:outline-none hover:border-[#2F7B5D] active:bg-white disabled:bg-white [&:not(:placeholder-shown)]:bg-white autofill:bg-white [-webkit-autofill]:bg-white"
               required
             />
           </div>
 
           <div className="form-control">
             <label className="label">
-              <span className="label-text">Email</span>
+              <span className="label-text text-[#2F7B5D]">Email</span>
             </label>
             <input
               type="email"
@@ -125,14 +130,14 @@ export default function Register() {
               value={formData.email}
               onChange={handleChange}
               placeholder="contoh@email.com"
-              className="input input-bordered"
+              className="input input-bordered bg-white text-[#2F7B5D] border-[#2F7B5D] focus:bg-white focus:border-[#2F7B5D] focus:outline-none hover:border-[#2F7B5D] active:bg-white disabled:bg-white [&:not(:placeholder-shown)]:bg-white autofill:bg-white [-webkit-autofill]:bg-white"
               required
             />
           </div>
 
           <div className="form-control">
             <label className="label">
-              <span className="label-text">Password</span>
+              <span className="label-text text-[#2F7B5D]">Password</span>
             </label>
             <input
               type="password"
@@ -140,14 +145,14 @@ export default function Register() {
               value={formData.password}
               onChange={handleChange}
               placeholder="Minimal 6 karakter"
-              className="input input-bordered"
+              className="input input-bordered bg-white text-[#2F7B5D] border-[#2F7B5D] focus:bg-white focus:border-[#2F7B5D] focus:outline-none hover:border-[#2F7B5D] active:bg-white disabled:bg-white [&:not(:placeholder-shown)]:bg-white autofill:bg-white [-webkit-autofill]:bg-white"
               required
             />
           </div>
 
           <div className="form-control">
             <label className="label">
-              <span className="label-text">Konfirmasi Password</span>
+              <span className="label-text text-[#2F7B5D]">Konfirmasi Password</span>
             </label>
             <input
               type="password"
@@ -155,15 +160,16 @@ export default function Register() {
               value={formData.confirmPassword}
               onChange={handleChange}
               placeholder="Masukkan ulang password"
-              className="input input-bordered"
+              className="input input-bordered bg-white text-[#2F7B5D] border-[#2F7B5D] focus:bg-white focus:border-[#2F7B5D] focus:outline-none hover:border-[#2F7B5D] active:bg-white disabled:bg-white [&:not(:placeholder-shown)]:bg-white autofill:bg-white [-webkit-autofill]:bg-white"
               required
             />
           </div>
 
-          <div className="form-control mt-6">
+          <div className="mt-5">
+            <div className="border-t-2 border-[#2F7B5D] mb-6"></div>
             <button 
               type="submit" 
-              className={`btn btn-primary ${loading ? "loading" : ""}`}
+              className={`w-full btn text-white bg-[#2F7B5D] hover:bg-[#246347] border-none disabled:bg-[#2F7B5D] disabled:text-white ${loading ? "loading loading-bar loading-lg text-white before:bg-white" : ""}`}
               disabled={loading}
             >
               {loading ? "Loading..." : "Daftar"}
@@ -173,7 +179,7 @@ export default function Register() {
           <div className="text-center mt-4">
             <p>
               Sudah punya akun?{" "}
-              <Link href="/Login" className="link link-primary">
+              <Link href="/Login" className="text-[#2F7B5D] hover:text-[#246347]">
                 Login di sini
               </Link>
             </p>
