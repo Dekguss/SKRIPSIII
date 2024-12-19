@@ -33,6 +33,7 @@ export default function Page() {
   });
 
   const [filteredResults, setFilteredResults] = useState([]);
+  const [selectedMotor, setSelectedMotor] = useState(null);
 
   const formatNumber = (value) => {
     // Remove non-digit characters
@@ -154,6 +155,14 @@ export default function Page() {
     return Math.max(...motors.map(motor => motor.saw_score));
   };
 
+  const handleMotorClick = (motor) => {
+    setSelectedMotor(motor);
+  };
+
+  const closeModal = () => {
+    setSelectedMotor(null);
+  };
+
   return (
     <div className="min-h-screen">
       <Sidebar />
@@ -164,35 +173,44 @@ export default function Page() {
             <p className="mt-2 text-gray-600">Temukan motor yang sesuai dengan preferensi Anda</p>
           </div>
           
+          <style jsx>{`
+            input:-webkit-autofill,
+            input:-webkit-autofill:hover,
+            input:-webkit-autofill:focus,
+            input:-webkit-autofill:active {
+              -webkit-box-shadow: 0 0 0 30px white inset !important;
+              -webkit-text-fill-color: #2F7B5D !important;
+            }
+          `}</style>
           <form
             onSubmit={handleSubmit}
-            className="space-y-4 bg-white p-8 rounded-xl border "
+            className="space-y-4 bg-white p-8 rounded-xl border border-[#2F7B5D]/20"
           >
             {/* Harga Range */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="form-control">
                 <label className="label">
-                  <span className="label-text">Harga Minimum</span>
+                  <span className="label-text text-gray-900 font-medium">Harga Minimum</span>
                 </label>
                 <input
                   type="text"
                   name="harga_min"
                   value={formattedValues.harga_min}
                   onChange={handleInputChange}
-                  className="input input-bordered w-full bg-white transition-all duration-200 hover:border-blue-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
+                  className="input input-bordered bg-white text-gray-900 hover:border-[#2F7B5D] focus:border-[#2F7B5D] focus:outline-none"
                   placeholder="Rp 0"
                 />
               </div>
               <div className="form-control">
                 <label className="label">
-                  <span className="label-text">Harga Maximum</span>
+                  <span className="label-text text-gray-900 font-medium">Harga Maximum</span>
                 </label>
                 <input
                   type="text"
                   name="harga_max"
                   value={formattedValues.harga_max}
                   onChange={handleInputChange}
-                  className="input input-bordered w-full transition-all  bg-white  duration-200 hover:border-blue-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
+                  className="input input-bordered bg-white text-gray-900 hover:border-[#2F7B5D] focus:border-[#2F7B5D] focus:outline-none"
                   placeholder="Rp 1.000.000.000"
                 />
               </div>
@@ -202,27 +220,27 @@ export default function Page() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="form-control">
                 <label className="label">
-                  <span className="label-text">Kilometer Minimum</span>
+                  <span className="label-text text-gray-900 font-medium">Kilometer Minimum</span>
                 </label>
                 <input
                   type="text"
                   name="kilometer_min"
                   value={formattedValues.kilometer_min}
                   onChange={handleInputChange}
-                  className="input input-bordered w-full transition-all  bg-white  duration-200 hover:border-blue-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
+                  className="input input-bordered bg-white text-gray-900 hover:border-[#2F7B5D] focus:border-[#2F7B5D] focus:outline-none"
                   placeholder="0"
                 />
               </div>
               <div className="form-control">
                 <label className="label">
-                  <span className="label-text">Kilometer Maximum</span>
+                  <span className="label-text text-gray-900 font-medium">Kilometer Maximum</span>
                 </label>
                 <input
                   type="text"
                   name="kilometer_max"
                   value={formattedValues.kilometer_max}
                   onChange={handleInputChange}
-                  className="input input-bordered w-full transition-all  bg-white  duration-200 hover:border-blue-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
+                  className="input input-bordered bg-white text-gray-900 hover:border-[#2F7B5D] focus:border-[#2F7B5D] focus:outline-none"
                   placeholder="1.000.000"
                 />
               </div>
@@ -232,27 +250,27 @@ export default function Page() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="form-control">
                 <label className="label">
-                  <span className="label-text">Tahun Minimum</span>
+                  <span className="label-text text-gray-900 font-medium">Tahun Minimum</span>
                 </label>
                 <input
                   type="number"
                   name="tahun_min"
                   value={filters.tahun_min}
                   onChange={handleInputChange}
-                  className="input input-bordered w-full transition-all  bg-white  duration-200 hover:border-blue-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
+                  className="input input-bordered bg-white text-gray-900 hover:border-[#2F7B5D] focus:border-[#2F7B5D] focus:outline-none"
                   placeholder="2000"
                 />
               </div>
               <div className="form-control">
                 <label className="label">
-                  <span className="label-text">Tahun Maximum</span>
+                  <span className="label-text text-gray-900 font-medium">Tahun Maximum</span>
                 </label>
                 <input
                   type="number"
                   name="tahun_max"
                   value={filters.tahun_max}
                   onChange={handleInputChange}
-                  className="input input-bordered w-full transition-all  bg-white  duration-200 hover:border-blue-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
+                  className="input input-bordered bg-white text-gray-900 hover:border-[#2F7B5D] focus:border-[#2F7B5D] focus:outline-none"
                   placeholder="2024"
                 />
               </div>
@@ -262,13 +280,13 @@ export default function Page() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="form-control">
                 <label className="label">
-                  <span className="label-text">Kapasitas Mesin</span>
+                  <span className="label-text text-gray-900 font-medium">Kapasitas Mesin</span>
                 </label>
                 <select
                   name="kapasitas_mesin"
                   value={filters.kapasitas_mesin}
                   onChange={handleInputChange}
-                  className="select select-bordered w-full transition-all bg-white duration-200 hover:border-blue-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
+                  className="select select-bordered bg-white text-gray-900 hover:border-[#2F7B5D] focus:border-[#2F7B5D] focus:outline-none"
                 >
                   <option value="Semua">Semua</option>
                   <option value="110">110 CC</option>
@@ -279,13 +297,13 @@ export default function Page() {
               </div>
               <div className="form-control">
                 <label className="label">
-                  <span className="label-text">Brand</span>
+                  <span className="label-text text-gray-900 font-medium">Brand</span>
                 </label>
                 <select
                   name="brand"
                   value={filters.brand}
                   onChange={handleInputChange}
-                  className="select select-bordered w-full transition-all bg-white duration-200 hover:border-blue-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
+                  className="select select-bordered bg-white text-gray-900 hover:border-[#2F7B5D] focus:border-[#2F7B5D] focus:outline-none"
                 >
                   <option value="Semua">Semua</option>
                   <option value="Honda">Honda</option>
@@ -299,26 +317,26 @@ export default function Page() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="form-control">
                 <label className="label">
-                  <span className="label-text">Model</span>
+                  <span className="label-text text-gray-900 font-medium">Model</span>
                 </label>
                 <input
                   type="text"
                   name="model"
                   value={filters.model}
                   onChange={handleInputChange}
-                  className="input input-bordered w-full transition-all  bg-white  duration-200 hover:border-blue-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
+                  className="input input-bordered bg-white text-gray-900 hover:border-[#2F7B5D] focus:border-[#2F7B5D] focus:outline-none"
                   placeholder="Model motor"
                 />
               </div>
               <div className="form-control">
                 <label className="label">
-                  <span className="label-text">Status Pajak</span>
+                  <span className="label-text text-gray-900 font-medium">Status Pajak</span>
                 </label>
                 <select
                   name="status_pajak"
                   value={filters.status_pajak}
                   onChange={handleInputChange}
-                  className="select select-bordered w-full transition-all bg-white duration-200 hover:border-blue-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
+                  className="select select-bordered bg-white text-gray-900 hover:border-[#2F7B5D] focus:border-[#2F7B5D] focus:outline-none"
                 >
                   <option value="Semua">Semua</option>
                   <option value="Aktif">Aktif</option>
@@ -328,17 +346,17 @@ export default function Page() {
             </div>
 
             {/* Weight Inputs */}
-            <div className=" p-6 bg-blue-50 rounded-lg border border-blue-100">
-              <h3 className="text-lg font-semibold mb-4 text-blue-900">
+            <div className="p-6 bg-white rounded-xl border border-[#2F7B5D]/20">
+              <h3 className="text-lg font-semibold mb-4 text-gray-900">
                 Bobot Kriteria
-                <span className="text-sm font-normal text-blue-600 ml-2">(Skala Kepentingan)</span>
+                <span className="text-sm font-normal text-[#2F7B5D] ml-2">(Skala Kepentingan)</span>
               </h3>
               <div className="grid grid-cols-1 gap-4">
                 <div className="form-control">
                   <label className="label">
-                    <span className="label-text font-semibold">Bobot Harga</span>
+                    <span className="label-text font-semibold text-gray-900">Bobot Harga</span>
                   </label>
-                  <div className="flex flex-wrap gap-4 mt-2">
+                  <div className="flex flex-wrap gap-10 mt-2">
                     <label className="flex items-center gap-2">
                       <input
                         type="radio"
@@ -346,9 +364,9 @@ export default function Page() {
                         value="1"
                         checked={weights.weight_harga === 1}
                         onChange={handleWeightChange}
-                        className="radio radio-primary"
+                        className="radio border-[#2F7B5D] checked:bg-[#2F7B5D] bg-white"
                       />
-                      <span>Sangat Tidak Penting</span>
+                      <span className="text-gray-900">Sangat Tidak Penting</span>
                     </label>
                     <label className="flex items-center gap-2">
                       <input
@@ -357,9 +375,9 @@ export default function Page() {
                         value="2"
                         checked={weights.weight_harga === 2}
                         onChange={handleWeightChange}
-                        className="radio radio-primary"
+                        className="radio border-[#2F7B5D] checked:bg-[#2F7B5D] bg-white"
                       />
-                      <span>Tidak Penting</span>
+                      <span className="text-gray-900">Tidak Penting</span>
                     </label>
                     <label className="flex items-center gap-2">
                       <input
@@ -368,9 +386,9 @@ export default function Page() {
                         value="3"
                         checked={weights.weight_harga === 3}
                         onChange={handleWeightChange}
-                        className="radio radio-primary"
+                        className="radio border-[#2F7B5D] checked:bg-[#2F7B5D] bg-white"
                       />
-                      <span>Sedang</span>
+                      <span className="text-gray-900">Sedang</span>
                     </label>
                     <label className="flex items-center gap-2">
                       <input
@@ -379,9 +397,9 @@ export default function Page() {
                         value="4"
                         checked={weights.weight_harga === 4}
                         onChange={handleWeightChange}
-                        className="radio radio-primary"
+                        className="radio border-[#2F7B5D] checked:bg-[#2F7B5D] bg-white"
                       />
-                      <span>Penting</span>
+                      <span className="text-gray-900">Penting</span>
                     </label>
                     <label className="flex items-center gap-2">
                       <input
@@ -390,18 +408,18 @@ export default function Page() {
                         value="5"
                         checked={weights.weight_harga === 5}
                         onChange={handleWeightChange}
-                        className="radio radio-primary"
+                        className="radio border-[#2F7B5D] checked:bg-[#2F7B5D] bg-white"
                       />
-                      <span>Sangat Penting</span>
+                      <span className="text-gray-900">Sangat Penting</span>
                     </label>
                   </div>
                 </div>
 
                 <div className="form-control">
                   <label className="label">
-                    <span className="label-text font-semibold">Bobot Kilometer</span>
+                    <span className="label-text font-semibold text-gray-900">Bobot Kilometer</span>
                   </label>
-                  <div className="flex flex-wrap gap-4 mt-2">
+                  <div className="flex flex-wrap gap-10 mt-2">
                     <label className="flex items-center gap-2">
                       <input
                         type="radio"
@@ -409,9 +427,9 @@ export default function Page() {
                         value="1"
                         checked={weights.weight_kilometer === 1}
                         onChange={handleWeightChange}
-                        className="radio radio-primary"
+                        className="radio border-[#2F7B5D] checked:bg-[#2F7B5D] bg-white"
                       />
-                      <span>Sangat Tidak Penting</span>
+                      <span className="text-gray-900">Sangat Tidak Penting</span>
                     </label>
                     <label className="flex items-center gap-2">
                       <input
@@ -420,9 +438,9 @@ export default function Page() {
                         value="2"
                         checked={weights.weight_kilometer === 2}
                         onChange={handleWeightChange}
-                        className="radio radio-primary"
+                        className="radio border-[#2F7B5D] checked:bg-[#2F7B5D] bg-white"
                       />
-                      <span>Tidak Penting</span>
+                      <span className="text-gray-900">Tidak Penting</span>
                     </label>
                     <label className="flex items-center gap-2">
                       <input
@@ -431,9 +449,9 @@ export default function Page() {
                         value="3"
                         checked={weights.weight_kilometer === 3}
                         onChange={handleWeightChange}
-                        className="radio radio-primary"
+                        className="radio border-[#2F7B5D] checked:bg-[#2F7B5D] bg-white"
                       />
-                      <span>Sedang</span>
+                      <span className="text-gray-900">Sedang</span>
                     </label>
                     <label className="flex items-center gap-2">
                       <input
@@ -442,9 +460,9 @@ export default function Page() {
                         value="4"
                         checked={weights.weight_kilometer === 4}
                         onChange={handleWeightChange}
-                        className="radio radio-primary"
+                        className="radio border-[#2F7B5D] checked:bg-[#2F7B5D] bg-white"
                       />
-                      <span>Penting</span>
+                      <span className="text-gray-900">Penting</span>
                     </label>
                     <label className="flex items-center gap-2">
                       <input
@@ -453,18 +471,18 @@ export default function Page() {
                         value="5"
                         checked={weights.weight_kilometer === 5}
                         onChange={handleWeightChange}
-                        className="radio radio-primary"
+                        className="radio border-[#2F7B5D] checked:bg-[#2F7B5D] bg-white"
                       />
-                      <span>Sangat Penting</span>
+                      <span className="text-gray-900">Sangat Penting</span>
                     </label>
                   </div>
                 </div>
 
                 <div className="form-control">
                   <label className="label">
-                    <span className="label-text font-semibold">Bobot Status Pajak</span>
+                    <span className="label-text font-semibold text-gray-900">Bobot Status Pajak</span>
                   </label>
-                  <div className="flex flex-wrap gap-4 mt-2">
+                  <div className="flex flex-wrap gap-10 mt-2">
                     <label className="flex items-center gap-2">
                       <input
                         type="radio"
@@ -472,9 +490,9 @@ export default function Page() {
                         value="1"
                         checked={weights.weight_status_pajak === 1}
                         onChange={handleWeightChange}
-                        className="radio radio-primary"
+                        className="radio border-[#2F7B5D] checked:bg-[#2F7B5D] bg-white"
                       />
-                      <span>Sangat Tidak Penting</span>
+                      <span className="text-gray-900">Sangat Tidak Penting</span>
                     </label>
                     <label className="flex items-center gap-2">
                       <input
@@ -483,9 +501,9 @@ export default function Page() {
                         value="2"
                         checked={weights.weight_status_pajak === 2}
                         onChange={handleWeightChange}
-                        className="radio radio-primary"
+                        className="radio border-[#2F7B5D] checked:bg-[#2F7B5D] bg-white"
                       />
-                      <span>Tidak Penting</span>
+                      <span className="text-gray-900">Tidak Penting</span>
                     </label>
                     <label className="flex items-center gap-2">
                       <input
@@ -494,9 +512,9 @@ export default function Page() {
                         value="3"
                         checked={weights.weight_status_pajak === 3}
                         onChange={handleWeightChange}
-                        className="radio radio-primary"
+                        className="radio border-[#2F7B5D] checked:bg-[#2F7B5D] bg-white"
                       />
-                      <span>Sedang</span>
+                      <span className="text-gray-900">Sedang</span>
                     </label>
                     <label className="flex items-center gap-2">
                       <input
@@ -505,9 +523,9 @@ export default function Page() {
                         value="4"
                         checked={weights.weight_status_pajak === 4}
                         onChange={handleWeightChange}
-                        className="radio radio-primary"
+                        className="radio border-[#2F7B5D] checked:bg-[#2F7B5D] bg-white"
                       />
-                      <span>Penting</span>
+                      <span className="text-gray-900">Penting</span>
                     </label>
                     <label className="flex items-center gap-2">
                       <input
@@ -516,9 +534,9 @@ export default function Page() {
                         value="5"
                         checked={weights.weight_status_pajak === 5}
                         onChange={handleWeightChange}
-                        className="radio radio-primary"
+                        className="radio border-[#2F7B5D] checked:bg-[#2F7B5D] bg-white"
                       />
-                      <span>Sangat Penting</span>
+                      <span className="text-gray-900">Sangat Penting</span>
                     </label>
                   </div>
                 </div>
@@ -527,7 +545,7 @@ export default function Page() {
 
             <button 
               type="submit" 
-              className="btn w-full border-none bg-blue-600 hover:bg-blue-700 text-white transition-all duration-200 shadow-sm hover:shadow-md"
+              className="btn w-full border-none bg-[#2F7B5D] hover:bg-[#266B4F] text-white transition-all duration-200 shadow-sm hover:shadow-md"
             >
               <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
                 <path fillRule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clipRule="evenodd" />
@@ -542,61 +560,59 @@ export default function Page() {
               <h2 className="text-2xl font-bold text-gray-900 mb-6">Hasil Rekomendasi</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {filteredResults.map((motor, index) => (
-                  <div key={index} className="card bg-white shadow-sm hover:shadow-md transition-all duration-200 rounded-xl overflow-hidden border border-gray-100">
-                    {motor.gambar && (
-                      <figure className="relative h-48 overflow-hidden">
-                        <img
-                          src={motor.gambar}
-                          alt={motor.motor}
-                          className="w-full h-full object-cover transform transition-transform duration-300 hover:scale-110"
-                        />
-                        {motor.saw_score === getHighestScore(filteredResults) && (
-                          <div className="absolute top-2 right-2 bg-yellow-400 rounded-full p-1" title="Rekomendasi Tertinggi">
+                  <div 
+                    key={index} 
+                    className="bg-white shadow-sm hover:shadow-md transition-all duration-200 rounded-xl overflow-hidden border border-[#2F7B5D]/20 hover:border-[#2F7B5D]/50 cursor-pointer"
+                    onClick={() => handleMotorClick(motor)}
+                  >
+                    {/* Image with SAW Score Badge */}
+                    <figure className="relative h-48 overflow-hidden">
+                      <img
+                        src={motor.gambar}
+                        alt={motor.motor}
+                        className="w-full h-full object-cover transform transition-transform duration-300 hover:scale-110"
+                      />
+                      <div className="absolute top-2 right-2 bg-[#2F7B5D] text-white px-3 py-1 rounded-full text-sm font-medium shadow-sm">
+                        Score: {motor.saw_score.toFixed(3)}
+                      </div>
+                      {motor.saw_score === getHighestScore(filteredResults) && (
+                        <div className="absolute top-0 left-0 w-16 h-16 overflow-hidden">
+                          {/* Curved background */}
+                          <div className="absolute top-0 left-0 w-28 h-28 bg-[#2F7B5D] rounded-full transform -translate-x-16 -translate-y-16"></div>
+                          {/* Star icon */}
+                          <div className="absolute top-2 left-2 text-white">
                             <svg 
                               xmlns="http://www.w3.org/2000/svg" 
-                              className="h-6 w-6 text-white"
+                              className="h-6 w-6"
                               viewBox="0 0 20 20" 
                               fill="currentColor"
                             >
-                              <path 
-                                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-                              />
+                              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292z" />
                             </svg>
                           </div>
-                        )}
-                      </figure>
-                    )}
-                    <div className="p-6">
-                      <h3 className="text-xl font-semibold text-gray-900 mb-3">{motor.motor}</h3>
-                      <div className="space-y-3">
-                        <div className="flex items-center text-gray-600">
-                          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
-                            <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clipRule="evenodd" />
-                          </svg>
-                          <span>Tahun {motor.tahun}</span>
                         </div>
-                        <div className="flex items-center text-gray-600">
-                          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
-                            <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 1.414L10.586 9H7a1 1 0 100 2h3.586l-1.293 1.293a1 1 0 101.414 1.414l3-3a1 1 0 000-1.414z" clipRule="evenodd" />
-                          </svg>
-                          <span>{motor.kilometer.toLocaleString()} km</span>
+                      )}
+                    </figure>
+
+                    {/* Content */}
+                    <div className="p-4">
+                      {/* Brand & Model */}
+                      <div className="flex flex-col gap-2 mb-3">
+                        <div className="flex items-center gap-2">
+                          <span className="text-sm font-medium text-[#2F7B5D] bg-[#2F7B5D]/10 px-3 py-1 rounded-full">
+                            {motor.brand}
+                          </span>
+                          <span className="text-sm font-medium text-gray-600 bg-gray-100 px-3 py-1 rounded-full">
+                            {motor.tahun}
+                          </span>
                         </div>
-                        <p className="text-2xl font-bold text-blue-600">
-                          Rp {motor.harga.toLocaleString()}
-                        </p>
-                        <div className="flex items-center justify-between">
-                          <div className={`px-3 py-1 rounded-full text-sm ${
-                            motor.status_pajak === 'Aktif' 
-                              ? 'bg-green-100 text-green-700' 
-                              : 'bg-red-100 text-red-700'
-                          }`}>
-                            {motor.status_pajak}
-                          </div>
-                          <div className="text-sm text-gray-500">
-                            Skor: <span className="font-medium text-blue-600">{motor.saw_score.toFixed(3)}</span>
-                          </div>
-                        </div>
+                        <h3 className="text-lg font-semibold text-gray-900">{motor.model}</h3>
                       </div>
+                      
+                      {/* Price */}
+                      <p className="text-xl font-bold text-[#2F7B5D]">
+                        Rp {motor.harga.toLocaleString()}
+                      </p>
                     </div>
                   </div>
                 ))}
@@ -605,6 +621,76 @@ export default function Page() {
           )}
         </div>
       </div>
+
+      {/* Detail Modal */}
+      {selectedMotor && (
+        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4 z-50">
+          <div className="bg-white rounded-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto relative">
+            {/* Close Button */}
+            <button
+              onClick={closeModal}
+              className="absolute top-4 right-4 text-gray-500 hover:text-gray-700 z-10"
+            >
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+
+            {/* Motor Image */}
+            <div className="relative h-72">
+              <img
+                src={selectedMotor.gambar}
+                alt={selectedMotor.motor}
+                className="w-full h-full object-cover"
+              />
+            </div>
+
+            {/* Motor Details */}
+            <div className="p-6 space-y-6">
+              {/* Brand, Model, Year */}
+              <div className="space-y-3">
+                <div className="flex items-center gap-2">
+                  <span className="text-sm font-medium text-[#2F7B5D] bg-[#2F7B5D]/10 px-3 py-1 rounded-full">
+                    {selectedMotor.brand}
+                  </span>
+                  <span className="text-sm font-medium text-gray-600 bg-gray-100 px-3 py-1 rounded-full">
+                    {selectedMotor.tahun}
+                  </span>
+                  <span className="text-sm font-medium text-white bg-[#2F7B5D] px-3 py-1 rounded-full ml-auto">
+                    Score: {selectedMotor.saw_score.toFixed(3)}
+                  </span>
+                </div>
+                <h2 className="text-2xl font-bold text-gray-900">{selectedMotor.model}</h2>
+              </div>
+
+              {/* Price */}
+              <div className="py-3 border-t border-[#2F7B5D]/20">
+                <p className="text-3xl font-bold text-[#2F7B5D]">
+                  Rp {selectedMotor.harga.toLocaleString()}
+                </p>
+              </div>
+
+              {/* Additional Details */}
+              <div className="grid grid-cols-2 gap-6 py-3 border-t border-[#2F7B5D]/20">
+                <div>
+                  <p className="text-gray-500 text-sm mb-1">Kilometer</p>
+                  <p className="font-medium">{selectedMotor.kilometer.toLocaleString()} km</p>
+                </div>
+                <div>
+                  <p className="text-gray-500 text-sm mb-1">Status Pajak</p>
+                  <p className={`font-medium ${
+                    selectedMotor.status_pajak === 'Aktif' 
+                      ? 'text-green-600' 
+                      : 'text-red-600'
+                  }`}>
+                    {selectedMotor.status_pajak}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
