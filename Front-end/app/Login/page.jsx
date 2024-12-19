@@ -44,7 +44,7 @@ export default function Login() {
       localStorage.setItem("token", data.token);
       
       // Redirect ke dashboard
-      router.push("/DaftarMotor");
+      router.push("/Dashboard");
     } catch (err) {
       setError(err.message);
     } finally {

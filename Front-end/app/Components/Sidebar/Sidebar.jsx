@@ -11,14 +11,14 @@ export default function Sidebar() {
   const getLinkClass = (path) => {
     const isActive = pathname === path;
     return isActive
-      ? "bg-blue-600 text-white transition p-3 rounded-md"
+      ? "bg-[#2F7B5D] text-white transition p-3 rounded-md"
       : "hover:bg-gray-900/10 transition bg-transparent p-3 rounded-md";
   };
 
   const handleLogout = () => {
-    // Hapus token dari localStorage
+    // Remove token from localStorage
     localStorage.removeItem("token");
-    // Redirect ke halaman login
+    // Redirect to login page
     router.push("/");
   };
 
@@ -26,7 +26,7 @@ export default function Sidebar() {
     <div className="border-r-[1px] fixed bg-white border-gray-200 text-gray-800 w-[270px] h-screen p-4">
       {/* sidebar menu */}
       <div className="wraperSidebar flex flex-col gap-2">
-        <p className="mb-1 mt-4 px-3 text-sm">Feature</p>
+        <p className="mb-1 mt-4 px-3 text-sm">Features</p>
         <Link href="/Dashboard">
           <div className={getLinkClass("/Dashboard")}>
             <div className="flex items-center gap-2">
@@ -66,7 +66,7 @@ export default function Sidebar() {
                   d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25"
                 />
               </svg>
-              <h1 className="text-sm">Daftar Motor Bekas</h1>
+              <h1 className="text-sm">Motorcycle List</h1>
             </div>
           </div>
         </Link>
@@ -93,7 +93,7 @@ export default function Sidebar() {
                   d="M12 18a3.75 3.75 0 0 0 .495-7.468 5.99 5.99 0 0 0-1.925 3.547 5.975 5.975 0 0 1-2.133-1.001A3.75 3.75 0 0 0 12 18Z"
                 />
               </svg>
-              <h1 className="text-sm">Rekomendasi</h1>
+              <h1 className="text-sm">Recommendations</h1>
             </div>
           </div>
         </Link>
@@ -123,7 +123,7 @@ export default function Sidebar() {
                 />
               </svg>
 
-              <h1 className="text-sm">Setting</h1>
+              <h1 className="text-sm">Settings</h1>
             </div>
           </div>
         </Link>

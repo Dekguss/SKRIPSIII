@@ -87,6 +87,15 @@ export default function Register() {
 
   return (
     <div className="min-h-screen bg-white flex items-center justify-center py-8">
+      <style jsx>{`
+        input:-webkit-autofill,
+        input:-webkit-autofill:hover,
+        input:-webkit-autofill:focus,
+        input:-webkit-autofill:active {
+          -webkit-box-shadow: 0 0 0 30px white inset !important;
+          -webkit-text-fill-color: #2F7B5D !important;
+        }
+      `}</style>
       <div className="card w-full max-w-md shadow-2xl bg-white border-2 border-[#2F7B5D]">
         <form className="card-body" onSubmit={handleSubmit}>
           <div className="flex justify-center mb-6">

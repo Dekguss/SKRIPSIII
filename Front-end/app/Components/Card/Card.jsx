@@ -10,7 +10,7 @@ export default function Card({ brand, gambar, harga, model, tahun }) {
 
   return (
     <div
-      className="group bg-white rounded-xl shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden border border-gray-100"
+      className="group bg-white rounded-xl shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden border border-[#2F7B5D]/20 hover:border-[#2F7B5D]/50"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -26,7 +26,7 @@ export default function Card({ brand, gambar, harga, model, tahun }) {
           onError={() => setImageError(true)}
         />
         <div className="absolute top-3 right-3">
-          <span className="px-3 py-1 text-xs font-medium bg-blue-600 text-white rounded-full shadow-sm">
+          <span className="px-3 py-1 text-xs font-medium bg-[#2F7B5D] text-white rounded-full shadow-sm">
             {tahun}
           </span>
         </div>
@@ -37,13 +37,13 @@ export default function Card({ brand, gambar, harga, model, tahun }) {
       <div className="p-4">
         {/* Brand Badge */}
         <div className="flex items-center gap-2 mb-2">
-          <span className="text-sm font-medium text-blue-600 bg-blue-50 px-3 py-1 rounded-full">
+          <span className="text-sm font-medium text-[#2F7B5D] bg-[#2F7B5D]/10 px-3 py-1 rounded-full">
             {brand}
           </span>
         </div>
 
         {/* Model Name */}
-        <h3 className="text-lg font-semibold text-gray-800 mb-3 line-clamp-1 group-hover:text-blue-600 transition-colors">
+        <h3 className="text-lg font-semibold text-gray-800 mb-3 line-clamp-1 group-hover:text-[#2F7B5D] transition-colors">
           {model}
         </h3>
 
@@ -51,7 +51,7 @@ export default function Card({ brand, gambar, harga, model, tahun }) {
         <div className="flex items-center justify-between">
           <div className="flex flex-col">
             <span className="text-xs text-gray-500">Starting from</span>
-            <span className="text-lg font-bold text-blue-600">
+            <span className="text-lg font-bold text-[#2F7B5D]">
               Rp {harga.toLocaleString()}
             </span>
           </div>

@@ -57,9 +57,9 @@ const StatCard = ({ title, value, icon }) => (
     <div className="flex items-center justify-between">
       <div>
         <p className="text-sm text-gray-500">{title}</p>
-        <h3 className="text-2xl font-semibold mt-1 text-blue-600">{value}</h3>
+        <h3 className="text-2xl font-semibold mt-1 text-[#2F7B5D]">{value}</h3>
       </div>
-      <div className="p-3 bg-gray-50 rounded-lg text-blue-600">{icon}</div>
+      <div className="p-3 bg-gray-50 rounded-lg text-[#2F7B5D]">{icon}</div>
     </div>
   </div>
 );
@@ -70,7 +70,7 @@ const PromoCard = ({ title, description, buttonText, buttonColor, icon, gradient
       <div>
         <h3 className="text-2xl font-bold mb-2 text-gray-800">{title}</h3>
         <p className={`text-${gradientFrom}-100 mb-4`}>{description}</p>
-        <button className={`btn bg-blue-600 border-none text-white  text-${buttonColor} px-6 py-2 rounded-lg font-semibold hover:bg-${gradientFrom}-50 transition-colors`}>
+        <button className={`btn bg-[#2F7B5D] border-none text-white px-6 py-2 rounded-lg font-semibold hover:bg-[#266B51] transition-colors`}>
           {buttonText}
         </button>
       </div>
@@ -105,33 +105,41 @@ export default function Main() {
               title="Special Offer!"
               description="Get special discounts up to 20% for selected motorcycles"
               buttonText="Learn More"
-              buttonColor="blue-600"
-              icon="🏍️"
-              gradientFrom="blue-600"
-              gradientTo="blue-700"
+              buttonColor="[#2F7B5D]"
+              icon={
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="#2F7B5D" className="w-8 h-8">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 18.75a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 0 1-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 0 0-3.213-9.193 2.056 2.056 0 0 0-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 0 0-10.026 0 1.106 1.106 0 0 0-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12" />
+                </svg>
+              }
+              gradientFrom="[#2F7B5D]"
+              gradientTo="[#266B51]"
             />
             <PromoCard
               title="Trade-in Program"
               description="Trade your old motorcycle and get extra value"
               buttonText="Trade Now"
-              buttonColor="purple-600"
-              icon="🔄"
-              gradientFrom="purple-600"
-              gradientTo="purple-700"
+              buttonColor="[#2F7B5D]"
+              icon={
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="#2F7B5D" className="w-8 h-8">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182m0-4.991v4.99" />
+                </svg>
+              }
+              gradientFrom="[#2F7B5D]"
+              gradientTo="[#266B51]"
             />
           </div>
         </div>
 
         {/* Brand Section */}
         <div className="my-7">
-          <h2 className="text-2xl font-semibold mb-4 text-blue-600">Popular Brands</h2>
+          <h2 className="text-2xl font-semibold mb-4 text-[#2F7B5D]">Popular Brands</h2>
           <div className="flex flex-wrap gap-4">
             {BRANDS.map((brand) => (
               <button
                 key={brand.name}
                 onClick={() => handleBrandClick(brand.name)}
                 className={`flex items-center gap-2 px-6 py-3 text-gray-500 border border-gray-200 rounded-lg transition-all shadow-sm ${
-                  selectedBrand === brand.name ? "bg-blue-600 text-white" : ""
+                  selectedBrand === brand.name ? "bg-[#2F7B5D] text-white" : ""
                 }`}
               >
                 <span className="font-medium">{brand.name}</span>
@@ -144,7 +152,7 @@ export default function Main() {
         <div className="rounded-md p-6 mb-8 border">
           <div className="mb-6">
             <h2 className="text-2xl font-semibold text-gray-800">Available Motorcycles</h2>
-            <p className="text-gray-900/50">Motor yang sedang tersedia di DwiksMotors</p>
+            <p className="text-gray-900/50">Currently available motorcycles at MOTOREC</p>
           </div>
           <MotorList selectedBrand={selectedBrand} />
         </div>
