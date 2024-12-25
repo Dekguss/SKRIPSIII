@@ -80,17 +80,20 @@ export default function Home() {
             transition={{ duration: 0.6 }}
             className="text-left md:w-1/2"
           >
-            <h1 className="text-4xl lg:text-6xl font-bold text-[#2F7B5D] mb-6">
+            <h1 className="text-4xl lg:text-6xl font-bold text-[#2F7B5D] mb-6 -mt-30">
               Temukan Motor Bekas <br /> Impian Anda
             </h1>
-            <button 
+            <p className="text-gray-600 text-lg mb-5">
+              Dapatkan rekomendasi motor bekas berkualitas sesuai dengan kebutuhan dan budget Anda. Kami membantu Anda menemukan pilihan terbaik dengan mudah dan cepat.
+            </p>
+            <button
               onClick={handleStartSearch}
               className="px-8 py-3 bg-[#2F7B5D] text-white rounded-full hover:bg-[#266B51] transition transform hover:scale-105"
             >
               Mulai Mencari
             </button>
           </motion.div>
-          
+
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
@@ -106,7 +109,7 @@ export default function Home() {
         </div>
 
         {/* Featured Categories */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16 mt-20">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -114,7 +117,7 @@ export default function Home() {
             className="relative rounded-3xl overflow-hidden h-64 group bg-[#2F7B5D]"
           >
             <img
-              src="Hero.png"
+              src="sport.png"
               alt="Sport"
               className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110 brightness-105 contrast-105"
             />
@@ -133,7 +136,7 @@ export default function Home() {
             className="relative rounded-3xl overflow-hidden h-64 group bg-[#2F7B5D]"
           >
             <img
-              src="/images/matic.jpg"
+              src="matic.png"
               alt="Matic"
               className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110 brightness-105 contrast-105"
             />
@@ -152,7 +155,7 @@ export default function Home() {
             className="relative rounded-3xl overflow-hidden h-64 group bg-[#2F7B5D]"
           >
             <img
-              src="/images/bebek.jpg"
+              src="bebek.png"
               alt="Bebek"
               className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110 brightness-105 contrast-105"
             />

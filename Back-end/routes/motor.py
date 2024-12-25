@@ -111,6 +111,9 @@ def search():
     if status_pajak != "Semua":
         query = query.filter(Motor.status_pajak.ilike(f"{status_pajak}%"))
 
+    
+    # print([motor.status_pajak for motor in query.all()])
+
     # Menjalankan query dan mengambil hasil
     filtered_motors = query.all()
 
@@ -140,6 +143,9 @@ def search():
 
         fuzzy_kilometer = calculate_kilometer_fuzzy_score(motor.kilometer, motor.tahun)
         fuzzy_status_pajak = calculate_status_pajak_fuzzy_score(motor.status_pajak)
+
+
+        # print(fuzzy_status_pajak)  # Atau gunakan logging
 
         results.append({
             "id": motor.id,
